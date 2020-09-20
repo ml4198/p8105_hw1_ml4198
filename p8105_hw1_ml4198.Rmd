@@ -3,12 +3,11 @@ title: "p8105_hw1_ml4198"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup}
 library(tidyverse)
 ```
 
 ## Problem 1
-
 
 ```{r df_create}
 problem1_df = tibble(
@@ -44,21 +43,16 @@ as.numeric (as.factor (problem1_df$vec_logical)) * (problem1_df$x)
 
 ## Problem 2
 
+```{r penguins}
+data("penguins", package = "palmerpenguins")
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+nrow(penguins)
+ncol(penguins)
+mean (penguins$flipper_length_mm, na.rm=TRUE)
 ```
 
-## Including Plots
+This is a dataset of 8 variables (species, island, bill length, bill dpeth, flipper length, body mass, sex, year) with 344 observations. The mean flipper length is 200.9152 mm.
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r scatter}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
